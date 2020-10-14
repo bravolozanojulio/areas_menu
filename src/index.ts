@@ -1,24 +1,72 @@
-import { menuPral } from './view/menuPral'
-import { leerTeclado } from './view/entradaTeclado'
+// Importaremos los menus creados 
+
+import { menuPral } from './view/menus/menuPral'
+import { menuPral2 } from './view/menus/menuPral2'
+import { menuPral3 } from './view/menus/menuPral3'
+
+
+
+// Importaremos la funciones creadas para realizar lo calculos 
+
+import {ptriangulo} from  './view/functions/ptriangulo'
+import {prectangulo} from './view/functions/prectangulo'
+import {pcirculo} from './view/functions/pcirculo'
+
+import {atriangulo} from  './view/functions/atriangulo'
+import {arectangulo} from './view/functions/arectangulo'
+import {acirculo} from './view/functions/acirculo'
+
+
+
+
+// A continuacion, procederemos a desarrollar la funcion principal de nuestra aplicacion
+
+// Utilizaremos el menu principal, y utilizando el "Case" para programar que debe hacer cada opción
+
 const main = async () => {
     let n: number
+    let b: number
     do {
         n = await menuPral()
         switch(n){
             case 1:
-                console.log("Estoy en opción 1")
-                await sumar()
+                console.log("Usted ha seleccionado la opción calcular perimetro: \n")
+                b = await menuPral2()
+                switch(b){
+                            case 1:
+                                console.log("\n Usted va a calcular el perimetro de un triangulo")
+                                await ptriangulo()
+                                break
+                            case 2:
+                                console.log("\n Usted va a calcular el perimetro de un rectangulo")
+                                await prectangulo()
+                                break
+                            case 3:
+                                console.log("\n Usted va a calcular el perimetro de un circulo")
+                                await pcirculo()
+                                break
+                }
                 break
-            case 2:
-                console.log("Estoy en opción 2")
-                let n1: number
-                let n2: number
-                n1 =  parseInt( await leerTeclado('Dame un número')) 
-                n2 =  parseInt( await leerTeclado('Dame otro número'))
-                console.log(`El resultado es: ${multiplicar(n1, n2)}`)
-                break
+              case 2:
+                    console.log("Usted ha seleccionado la opción calcular area \n ")
+                    b = await menuPral3()
+                    switch(b){
+                             case 1:
+                                 console.log("\n Usted va a calcular el area de un triangulo")
+                                 await atriangulo()
+                                 break
+                            case 2:
+                                 console.log("\n Usted va a calcular el area de un rectangulo")
+                                 await arectangulo()
+                                 break
+                            case 3:
+                                  console.log("\n Usted va a calcular el area de un circulo")
+                                  await acirculo()
+                                 break
+                    }
+                    break
             case 0:
-                console.log('\nAdios')
+                console.log('\n Gracias por utilizar nuestro programa ')
                 break
             default:
                 console.log("Opción incorrecta")
@@ -26,15 +74,10 @@ const main = async () => {
         }
     }while (n != 0)
 }
-const sumar = async () => {
-    let n1: number
-    let n2: number
-    n1 =  parseInt( await leerTeclado('Dame un número')) 
-    n2 =  parseInt( await leerTeclado('Dame otro número'))
-    console.log(`La suma es ${n1 + n2}`)
-}
 
-const multiplicar = (n1: number, n2: number): number => n1 * n2
+
+// Ejecutamos la funcion
+
 main()
 
 
